@@ -16,7 +16,7 @@ const cards = [
     icon: Eye,
     iconColor: '#00D4FF',
     title: 'Vision',
-    body: 'Ser el estudio lider en diseno de experiencias digitales que conectan tecnologia con el bienestar del mundo.',
+    body: 'Ser el estudio lider en diseño de experiencias digitales que conectan tecnologia con el bienestar del mundo.',
   },
   {
     icon: Heart,
