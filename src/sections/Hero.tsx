@@ -29,7 +29,6 @@ interface TreeNode {
   speedFactor: number;
 }
 
-const SEED_COLOR = 'rgba(255,255,255,1)';
 const STEM_COLOR = '#10C971';
 const CIRCUIT_COLOR = '#00D4FF';
 const CIRCUIT_GLOW = 'rgba(0, 212, 255, 0.6)';
