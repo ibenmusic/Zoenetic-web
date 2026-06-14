@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 8%;
+    --foreground: 210 20% 97%;
+    --card: 220 14% 12%;
+    --card-foreground: 210 20% 97%;
+    --popover: 220 14% 12%;
+    --popover-foreground: 210 20% 97%;
+    --primary: 193 100% 50%;
+    --primary-foreground: 210 20% 8%;
+    --secondary: 220 14% 12%;
+    --secondary-foreground: 210 20% 97%;
+    --muted: 220 14% 16%;
+    --muted-foreground: 214 16% 55%;
+    --accent: 152 76% 43%;
+    --accent-foreground: 210 20% 8%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 14% 35%;
+    --input: 220 14% 16%;
+    --ring: 193 100% 50%;
+    --radius: 0.625rem;
+  }
+
+  html {
+    /* Disabling smooth scroll to avoid conflicts with GSAP ScrollTrigger */
+  }
+
+  body {
+    @apply bg-deep-navy text-text-primary font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .text-gradient-cyan-green {
+    background: linear-gradient(135deg, #00D4FF, #10C971);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
