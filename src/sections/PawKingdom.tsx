@@ -46,6 +46,23 @@ export default function PawKingdom() {
   const cardsRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
   const screenImagesRef = useRef<HTMLDivElement>(null);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+
+  const handleInfiniteScroll = () => {
+    const el = mobileScrollRef.current;
+    if (!el) return;
+
+    const scrollLeft = el.scrollLeft;
+    const scrollWidth = el.scrollWidth;
+    const clientWidth = el.clientWidth;
+
+    // Detect if we reached the end of the first half
+    if (scrollLeft + clientWidth >= scrollWidth - 10) {
+      el.scrollLeft = 1; // Jump back to start
+    } else if (scrollLeft <= 0) {
+      el.scrollLeft = scrollWidth / 2 - clientWidth; // Jump to end of first half if scrolling back
+    }
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -270,29 +287,39 @@ export default function PawKingdom() {
           </div>
 
           {/* Mobile: horizontal scroll of screenshots */}
-          <div className="flex lg:hidden gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
-            {features.map((feature, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 snap-center"
-                style={{
-                  width: 220,
-                  height: 400,
-                  backgroundColor: '#0A0C10',
-                  border: '2px solid rgba(74, 85, 104, 0.5)',
-                  borderRadius: 28,
-                  padding: 8,
-                }}
-              >
-                <div className="w-full h-full rounded-[22px] overflow-hidden">
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-full object-cover"
-                  />
+          <div className="w-full lg:hidden">
+            <p className="text-center font-body text-[10px] tracking-widest mb-4 text-cyan-neon animate-pulse uppercase">
+              Desliza para explorar →
+            </p>
+            <div 
+               ref={mobileScrollRef}
+               onScroll={handleInfiniteScroll}
+               className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory px-6 hide-scrollbar relative z-20"
+            >
+              {[...features, ...features].map((feature, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 snap-center"
+                  style={{
+                    width: 280,
+                    height: 520,
+                    backgroundColor: '#0A0C10',
+                    border: '2px solid rgba(74, 85, 104, 0.4)',
+                    borderRadius: 36,
+                    padding: 12,
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0,212,255,0.05)'
+                  }}
+                >
+                  <div className="w-full h-full rounded-[26px] overflow-hidden">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
